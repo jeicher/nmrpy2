@@ -1,5 +1,3 @@
-from tools import *
-
 import sys
 import csv
 import nmrglue as ng
