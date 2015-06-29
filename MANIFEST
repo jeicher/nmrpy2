@@ -3,4 +3,3 @@ README
 setup.py
 nmrpy/__init__.py
 nmrpy/fid.py
-nmrpy/tools.py
