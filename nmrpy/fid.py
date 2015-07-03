@@ -5,15 +5,12 @@ import numpy as np
 import scipy as sp
 from scipy.optimize import leastsq
 from scipy.interpolate import UnivariateSpline
-from scipy.interpolate import LSQUnivariateSpline
 from multiprocessing import cpu_count, Pool
 from mpl_toolkits.mplot3d import Axes3D
 from matplotlib.collections import PolyCollection
-from matplotlib import patches, rc
-from matplotlib.font_manager import FontProperties
+from matplotlib import rc
 from matplotlib.pylab import show, get_current_fig_manager, figure, cm, text, plt
 import matplotlib.ticker as ticker
-from multiprocessing import Pool, cpu_count
 try:
         import pywt
 except:
@@ -1052,11 +1049,10 @@ class FID_array(object):
                         self.ranges = [
                             [self.params['sw_left'] - self.params['sw'],
                              self.params['sw_left']]]
-                xs = sorted(np.array(self.picker.peaks))
+                xs = np.array(sorted(self.picker.peaks))
                 peaks = []
                 for i in self.ranges:
                         x = xs[xs >= i[0]]
-                        # peaks.append(np.array(x[x<=i[1]]))
                         peaks.append(list(x[x <= i[1]]))
                 self.peaks = peaks
                 # this instance must be destroyed to be able to pickle the FID
@@ -1996,6 +1992,7 @@ class SpanSelector:
                 span = vmax - vmin
                 self.pressv = None
                 spantest = False
+                print '%f - %f' % (vmax,vmin)
                 if len(self.ranges) > 0:
                         for i in self.ranges:
                                 if (vmin >= i[0]) and (vmin <= i[1]):
