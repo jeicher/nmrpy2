@@ -1054,7 +1054,7 @@ class FID_array(object):
                 for i in self.ranges:
                         x = xs[xs >= i[0]]
                         peaks.append(list(x[x <= i[1]]))
-                self.peaks = peaks
+                self.peaks = [j for i in peaks for j in i]
                 # this instance must be destroyed to be able to pickle the FID
                 # instance for multiprocessing
                 self.picker = None
